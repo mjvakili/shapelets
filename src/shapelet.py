@@ -7,6 +7,7 @@ import pylab as p
 import scipy
 import scipy.special as special
 import math
+from scipy import misc
 
 def hermite2d(n0,n1):
     """Return a n0 x n1 order 2D Hermite polynomial"""
@@ -22,9 +23,9 @@ def laguerre(n0,m0):
 def basis2d(n0,n1,beta=[1.,1.]):
     """2d dimensionless Cartesian basis function"""
     b=hermite2d(n0,n1)
-    b[0]*=((2**n0)*(n.pi**(.5))*scipy.factorial(n0))**(-.5)
+    b[0]*=((2**n0)*(n.pi**(.5))*scipy.misc.factorial(n0))**(-.5)
     exp0=lambda x: beta[0] * b[0](x) * n.exp(-.5*(x**2))
-    b[1]*=((2**n1)*(n.pi**(.5))*scipy.factorial(n1))**(-.5)
+    b[1]*=((2**n1)*(n.pi**(.5))*scipy.misc.factorial(n1))**(-.5)
     exp1=lambda x: beta[1] * b[1](x) * n.exp(-.5*(x**2))
     return [exp0,exp1]
 
